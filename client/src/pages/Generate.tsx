@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { colorSchemes, type AspectRatio, type IThumbnail, type ThumbnailStyle } from "../assets/assets";
 import SoftBackDrop from "../components/SoftBackdrop";
 import AspectRatioSelector from "../components/AspectRatioSelector";
+import StyleSelector from "../components/StyleSelector";
+import ColorSchemeSelector from "../components/ColorSchemeSelector";
 
 const Generate = () => {
   const{id}=useParams();
@@ -41,8 +43,9 @@ const Generate = () => {
             {/* AspectRatioSelector */}
             <AspectRatioSelector value={aspectRatio} onChange={setAspectRatio} />
             {/* StyleSelector */}
+            <StyleSelector value={style} onChange={setStyle} isOpen={styleDropdownOpen} setIsOpen={setStyleDropdownOpen}/>
             {/* ColorSchemeSelector */}
-
+            <ColorSchemeSelector value={colorSchemeID}onChange={setColorSchemeId}/>
             {/* Details */}
             <div className="space-y-2">
            <label className="block text-sm font-medium ">Additional Prompts <span className="text-zinc-400 text-xs">(Optional)</span>
