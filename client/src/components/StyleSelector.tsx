@@ -9,7 +9,7 @@ const StyleSelector = ({value,onChange, isOpen, setIsOpen} :{value: ThumbnailSty
         "Minimalist" :"Clean, simple, lots of white space",
         "Photorealistic" :"Photo-based,natural looking",
         "Illustrated" :"Hand-drawn, artistic,creative",
-        "Tech / Futuristic" :"Modern, sleek, tech-inspired"
+        "Tech/Futuristic" :"Modern, sleek, tech-inspired"
     }
 
     const styleIcons: Record<ThumbnailStyle,React.ReactNode> = {
@@ -17,7 +17,7 @@ const StyleSelector = ({value,onChange, isOpen, setIsOpen} :{value: ThumbnailSty
         "Minimalist" :<SquareIcon className='h-4 w-4' />,
         "Photorealistic" :<ImageIcon className='h-4 w-4' />,
         "Illustrated" :<PenToolIcon className='h-4 w-4' />,
-        "Tech / Futuristic" :<CpuIcon className='h-4 w-4' />
+        "Tech/Futuristic" :<CpuIcon className='h-4 w-4' />
     }
   return (
     <div className="relative space-y-3 dark">
