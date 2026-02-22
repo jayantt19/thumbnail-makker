@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import SoftBackDrop from "../components/SoftBackdrop";
 import { dummyThumbnails, type IThumbnail } from "../assets/assets";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Divide } from "lucide-react";
+import { ArrowUpRightIcon, Divide, DownloadIcon, TrashIcon } from "lucide-react";
 
 
 const MyGeneration = () => {
@@ -80,8 +80,18 @@ const navigate = useNavigate();
                   <div className="p-4 space-y-2">
                     <h3 className="text-sm font-semibold text-zinc-100 line-clamp-2">{thumb.title}</h3>
                     <div className="flex flex-wrap gap-2 text-xs text-zinc-400">
-                      <span>{thumb.style}</span>
+                      <span className="px-02 py-0.5 rounded bg-white/8">{thumb.style}</span>
+                      <span className="px-02 py-0.5 rounded bg-white/8">{thumb.color_scheme}</span>
+                      <span className="px-02 py-0.5 rounded bg-white/8">{thumb.aspect_ratio}</span>
                     </div>
+                    <p className="text-xs text-zinc-500">{new Date(thumb.createdAt!).toDateString()}</p>
+                  </div>
+                  <div onClick={(e)=>e.stopPropagation()}className="absolute bottom-2 right-2 max-sm:flex sm:hidden group-hover:flex gap-1.5">
+                    <TrashIcon  onClick={()=>handleDelete(thumb._id)}className="size-6 bg-black/50 p-1 rounded hover:bg-pink-600 transition-all"/>
+                    <DownloadIcon onClick={()=>handleDownload(thumb.image_url!)} className="size-6 bg-black/50 p-1 rounded hover:bg-pink-600 transition-all" />
+                    <Link target="_blank" to={`/preview?thumbnail_url=${thumb.image_url}&title=${thumb.title}`}>
+                    <ArrowUpRightIcon className="size-6 bg-black/50 p-1 rounded hover:bg-pink-600 transition-all" />
+                    </Link>
                   </div>
                 </div>
               )
