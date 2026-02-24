@@ -1,31 +1,23 @@
+import dns from 'node:dns';
+dns.setDefaultResultOrder('ipv4first');
 import "dotenv/config";
-import express from "express";
+import express, { Request, Response } from 'express';
 import cors from "cors";
-import connectDB from "./configs/db";
+import connectDB from "./configs/db.js";
+ 
+connectDB();
+const app = express();
 
-const startServer = async () => {
-  try {
-    await connectDB();
+// Middleware
+app.use(cors())
+app.use(express.json());
 
-    const app = express();
+const port = process.env.PORT || 3000;
 
-    app.use(cors());
-    app.use(express.json());
+app.get('/', (req: Request, res: Response) => {
+    res.send('Server is Live!');
+});
 
-    const port = process.env.PORT || 3000;
-
-    app.get("/", (_req, res) => {
-      res.send("Server is Live!");
-    });
-
-    app.listen(port, () => {
-      console.log(`🚀 Server running at http://localhost:${port}`);
-    });
-
-  } catch (error) {
-    console.error("Server startup failed:", error);
-    process.exit(1);
-  }
-};
-
-startServer();
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
